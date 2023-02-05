@@ -29,10 +29,19 @@ async def on_message(message):
     if message.author == client.user:
         return 
     message_str = str(message.content)
-    if food_data["Location"] == LOCATION and message.content in food_data["Keywords"]:
-        await message.channel.send(food_data.get("Restaurants"))
-    else:
-        await message.channel.send("No responses were found for your request")
+    message_words = message_str.split(" ")
+    mentioned_keywords = [] 
+    if "oi" in message_words:
+        await message.channel.send("Hi Friend, I'm airbnbot. It`s really nice to meet you!")
+    if food_data["Location"] == LOCATION:
+        for word in message.content.split(" "):
+            if word in food_data["Keywords"]:
+                mentioned_keywords.append(word)
+        if len(mentioned_keywords) > 0:
+            await message.channel.send("Here are some options for {} near {}:".format(mentioned_keywords, LOCATION))
+            await message.channel.send(food_data.get("Restaurants"))
+       #else:
+            #await message.channel.send("No responses were found for your request.")
 
 
 client.run(TOKEN)
