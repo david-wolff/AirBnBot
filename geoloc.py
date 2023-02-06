@@ -9,7 +9,6 @@ lng = g.latlng[1]
 
 MAPS_API_KEY = 'AIzaSyBumUG1oL-ZxmO6v2f2McFmdUC3Fx5Z7Pk'
 
-
 payload={}
 headers={}
 url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={}%2C{}&radius=150000&type=restaurant&keyword=cruise&key={}".format(lat,lng,MAPS_API_KEY)
